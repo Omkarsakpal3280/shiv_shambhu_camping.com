@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking & Payment</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f9f9f9; text-align: center; padding: 40px; }
+    .payment-card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.1); display: inline-block; margin-top: 20px; }
+    img.qr { margin-top: 20px; width: 200px; height: 200px; }
+    .price { color: #ff6600; font-size: 24px; font-weight: bold; margin: 10px 0; }
+    .btn { display: inline-block; margin-top: 20px; background: #007bff; color: white; padding: 12px 25px; border-radius: 5px; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <div class="payment-card">
+    <h2 id="package-name">Package Name</h2>
+    <p class="price" id="package-price">₹0</p>
+    <p>Scan the QR below to pay the amount:</p>
+    <img id="qr-code" class="qr" src="" alt="QR Code">
+    <p class="price" id="display-amount">₹0</p>
+    <a href="#" class="btn" id="pay-btn">Pay Now</a>
+  </div>
+
+<script>
+  // Get package info from URL parameters
+  const params = new URLSearchParams(window.location.search);
+  const packageName = params.get("package") || "Vasota Package";
+  const totalAmount = params.get("total") || "1500";
+
+  // Display package info
+  document.getElementById("package-name").innerText = packageName;
+  document.getElementById("package-price").innerText = "₹" + totalAmount;
+  document.getElementById("display-amount").innerText = "₹" + totalAmount;
+
+  // --- Use your UPI ID here ---
+  const upiID = "9326567238@ybl";
+  const paymentNote = encodeURIComponent(`Payment for ${packageName}`);
+  const upiLink = `upi://pay?pa=${upiID}&pn=VasotaTours&am=${totalAmount}&cu=INR&tn=${paymentNote}`;
+
+  // Generate QR code
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upiLink)}`;
+  document.getElementById("qr-code").src = qrUrl;
+
+  // Set "Pay Now" button link
+  document.getElementById("pay-btn").href = upiLink;
+</script>
+
+</body>
+</html>

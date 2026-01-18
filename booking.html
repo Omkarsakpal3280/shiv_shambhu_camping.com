@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Package Booking</title>
+<style>
+body {
+  font-family: "Poppins", sans-serif;
+  background: #f4f4f9;
+  padding: 40px;
+}
+.booking-form {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  max-width: 400px;
+  margin: 0 auto;
+}
+.booking-form h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+.booking-form .package-info {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #555;
+}
+.booking-form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+.booking-form button {
+  width: 100%;
+  background-color: orange;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.booking-form button:hover {
+  background-color: darkorange;
+}
+</style>
+</head>
+<body>
+<!-- our paqckages start -->
+<div class="booking-form">
+  <h2 id="packageTitle">Booking Form</h2>
+  <div class="package-info" id="packageInfo"></div>
+  
+  <form id="bookingForm">
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="tel" id="mobile" placeholder="Mobile Number" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="date" id="checkin" required>
+    <input type="number" id="persons" placeholder="Number of Persons" min="1" required>
+    <button type="submit">Pay & Book</button>
+  </form>
+</div>
+
+<script>
+// ✅ Get package info from URL
+const urlParams = new URLSearchParams(window.location.search);
+const packageName = urlParams.get("package");
+const price = parseFloat(urlParams.get("price"));
+
+document.getElementById("packageTitle").textContent = `${packageName} Package Booking`;
+document.getElementById("packageInfo").textContent = `Price: ${price} per person`;
+
+// ✅ Set today's date as minimum
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('checkin').setAttribute('min', today);
+
+// ✅ Handle booking form submission
+document.getElementById('bookingForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById('name').value.trim();
+  const mobile = document.getElementById('mobile').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const checkin = document.getElementById('checkin').value;
+  const persons = parseInt(document.getElementById('persons').value);
+
+  if (!name || !mobile || !email || !checkin || !persons) {
+    alert("Please fill all fields before proceeding.");
+    return;
+  }
+
+  // ✅ Calculate total
+  const total = persons * price;
+
+  // ✅ Redirect with all data
+  const params = new URLSearchParams({
+    name,
+    mobile,
+    email,
+    checkin,
+    persons,
+    total,
+    package: packageName
+  });
+
+  window.location.href = `BookingSummary.html?${params.toString()}`;
+});
+</script>
+<!-- our packages end -->
+
+
+
+
+
+
+<!-- Tour packages start script -->
+<script>
+// ✅ Wait for DOM to load
+document.addEventListener("DOMContentLoaded", () => {
+
+  // ✅ Package data (can easily be expanded)
+  const packages = [
+    {
+      name: "Mumbai To Vasota Fort",
+      price: 2700,
+      buttonSelector: ".products-card-item:nth-child(1) .btn"
+    },
+    {
+      name: "Pune To Vasota Fort",
+      price: 1800, // You can update this price
+      buttonSelector: ".products-card-item:nth-child(2) .book-now-btn"
+    }
+  ];
+
+  // ✅ Add click event for each package
+  packages.forEach(pkg => {
+    const btn = document.querySelector(pkg.buttonSelector);
+    if (btn) {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        // ✅ Encode package details in URL
+        const params = new URLSearchParams({
+          package: pkg.name,
+          price: pkg.price
+        });
+
+        // ✅ Redirect to booking form
+        window.location.href = `booking.html?${params.toString()}`;
+      });
+    }
+  });
+
+});
+</script>
+<!-- Tour packages end -->
+
+
+</body>
+</html>

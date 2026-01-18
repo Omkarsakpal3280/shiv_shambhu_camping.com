@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking Summary</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #74ABE2, #5563DE);
+    padding: 50px;
+    color: #333;
+  }
+
+  .summary {
+    background: #fff;
+    padding: 40px;
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+    animation: fadeIn 0.6s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  h2 {
+    text-align: center;
+    color: #2d2f4d;
+    font-weight: 600;
+    margin-bottom: 25px;
+  }
+
+  .summary-details {
+    background: #f7f8ff;
+    border-radius: 10px;
+    padding: 20px 25px;
+    margin-bottom: 25px;
+  }
+
+  .summary-details p {
+    font-size: 16px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 8px;
+  }
+
+  .summary-details strong {
+    color: #2d2f4d;
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .btn {
+    flex: 1;
+    text-align: center;
+    background: #5563DE;
+    color: white;
+    padding: 12px 15px;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: 0.3s ease;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background: #3742b2;
+    transform: translateY(-2px);
+  }
+
+  .btn.orange {
+    background: #FFA534;
+  }
+
+  .btn.orange:hover {
+    background: #e78e1f;
+  }
+
+  .btn.grey {
+    background: #6c757d;
+  }
+
+  .btn.grey:hover {
+    background: #5a6268;
+  }
+</style>
+</head>
+<body>
+
+<div class="summary">
+  <h2>Booking Summary</h2>
+
+  <div id="details" class="summary-details"></div>
+
+  <div class="btn-container">
+    <button id="goBackBtn" class="btn grey">⬅ Go Back</button>
+    <button id="proceedToPayBtn" class="btn orange">💳 Proceed to Payment</button>
+    <a href="home.html" class="btn">🏠 Home</a>
+  </div>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const detailsDiv = document.getElementById("details");
+
+// Collect booking details
+const bookingData = {
+  "Package": params.get("package"),
+  "Name": params.get("name"),
+  "Mobile": params.get("mobile"),
+  "Email": params.get("email"),
+  "Check-in Date": params.get("checkin"),
+  "Number of Persons": params.get("persons"),
+  "Total Amount": "₹" + params.get("total")
+};
+
+// Display booking details
+let html = "";
+for (const key in bookingData) {
+  html += `<p><strong>${key}:</strong> <span>${bookingData[key]}</span></p>`;
+}
+detailsDiv.innerHTML = html;
+
+// Go back
+document.getElementById("goBackBtn").addEventListener("click", () => {
+  window.history.back();
+});
+
+// Proceed to payment with confirmation
+document.getElementById("proceedToPayBtn").addEventListener("click", () => {
+  const packageName = params.get("package");
+  const total = params.get("total");
+
+  // Show confirmation dialog
+  const confirmPayment = confirm(`You are about to pay ₹${total} for the "${packageName}" package. Do you want to proceed?`);
+
+  if (confirmPayment) {
+    // If user clicks OK, redirect to payment page
+    window.location.href = `payment.html?package=${encodeURIComponent(packageName)}&total=${total}`;
+  } else {
+    // User clicked Cancel
+    alert("Payment cancelled. You can review your booking details.");
+  }
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotel Booking | Home</title>
+
+  <style>
+    /* --- Reset some default styles --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+  </style>
+
+</head>
+<body>
+    
+<!-- /* --- Navbar --- */ -->
+<style>
+
+    nav {
+      background-color: orange;
+      color: black;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 50px;
+    }
+
+    nav .logo {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      color: black;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #ffcc00;
+    }
+ </style>
+
+  <nav>
+    <div class="logo">MyHotel</div>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#Gallery">Gallery</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+  <!-- navbar end -->
+
+
+
+
+<!-- Home page start -->
+<style>
+ /* Slider container */
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 90vh;
+      overflow: hidden;
+    }
+
+    /* Slide images */
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(70%);
+    }
+
+    /* Text overlay */
+    .caption {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      text-align: center;
+    }
+
+    .caption h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .caption p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .caption a {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #ff4b2b;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .caption a:hover {
+      background: #ff6a4b;
+    }
+
+    /* Navigation buttons */
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 10px 20px;
+      border-radius: 50%;
+      z-index: 10;
+    }
+
+    .prev { left: 20px; }
+    .next { right: 20px; }
+
+    .nav-btn:hover {
+      background: rgba(0,0,0,0.8);
+    }
+</style>
+
+<div class="slider">
+    <!-- Slide 1 -->
+    <div class="slide active">
+      <img src="https://picsum.photos/id/1018/1600/900" alt="Slide 1">
+      <div class="caption">
+        <h1>Welcome To Shiv Shambhu Camping</h1>
+        <p>"Feel the thrill, live the chill — only at Shiv Shambhu Camping!"</p>
+        <a href="#packages">Book Now</a>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+      <img src="https://picsum.photos/id/1015/1600/900" alt="Slide 2">
+      <div class="caption">
+        <h1>We Build Your Vision</h1>
+        <p>High-quality design and development solutions</p>
+        <a href="#packages">Book Now</a>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+      <img src="https://picsum.photos/id/1019/1600/900" alt="Slide 3">
+      <div class="caption">
+        <h1>Grow With Us</h1>
+        <p>Join thousands of satisfied clients worldwide</p>
+        <a href="#packages">Book Now</a>
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <button class="nav-btn prev" onclick="changeSlide(-1)">&#10094;</button>
+    <button class="nav-btn next" onclick="changeSlide(1)">&#10095;</button>
+  </div>
+
+  <script>
+    let index = 0;
+    const slides = document.querySelectorAll(".slide");
+
+    function showSlide(n) {
+      slides.forEach(slide => slide.classList.remove("active"));
+      index = (n + slides.length) % slides.length;
+      slides[index].classList.add("active");
+    }
+
+    function changeSlide(direction) {
+      showSlide(index + direction);
+    }
+
+    // Auto-slide every 5 seconds
+    setInterval(() => changeSlide(1), 5000);
+  </script>
+<!-- Home page end -->
+
+
+
+
+<!-- About Section start -->
+ <style>
+    .about-section {
+  padding: 80px 20px;
+  background-color:white;
+  color: #333;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.about-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 30px;
+}
+
+.about-img {
+  width: 250px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-text h3 {
+  margin-top: 0;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #0078ff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background-color: #005fcc;
+}
+
+ </style>
+
+ <section id="about" class="about-section">
+  <div class="container">
+    <h2>About Me</h2>
+    <div class="about-content">
+      <img src="your-photo.jpg" alt="Your Name" class="about-img">
+      <div class="about-text">
+        <h3>Hello! I'm [Your Name]</h3>
+        <p>
+          I'm a passionate [your profession or role] with a strong focus on 
+          [your key skills or interests]. I love creating meaningful digital experiences 
+          and continuously learning new technologies to improve my craft.
+        </p>
+        <p>
+          With experience in [mention experience or industries], I aim to deliver 
+          innovative and user-centered solutions that make a real impact.
+        </p>
+        <a href="#contact" class="btn">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+ <!-- About Section  end -->
+
+
+
+
+
+<!-- Tour Vasota package start--> 
+<style>
+/* ====== General Section Styling ====== */
+.card-services.section {
+  padding: 60px 10%;
+  background: #f9f9f9;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+}
+
+/* ====== Header Section ====== */
+.card-services-header-section {
+  margin-bottom: 40px;
+}
+
+.title-page-services {
+  font-size: 42px;
+  color: #222;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card-services-header-section p.tour {
+  font-size: 18px;
+  font-style: italic;
+  color: #ff8c00;
+}
+
+/* ====== Card Grid ====== */
+.products-card-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  justify-content: center;
+}
+
+/* ====== Individual Card ====== */
+.products-card-item {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.products-card-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ====== Card Image ====== */
+.products-card-item .card-header img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.products-card-item:hover .card-header img {
+  transform: scale(1.05);
+}
+
+/* ====== Card Content ====== */
+.products-card-item .card-content {
+  padding: 20px;
+}
+
+.products-card-item .card-content h4 {
+  font-size: 26px;
+  color: #333;
+  margin: 10px 0 20px;
+  font-weight: 600;
+}
+
+/* ====== Book Now Button ====== */
+.book-now-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #ff8c00;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.book-now-btn:hover {
+  background-color: #e67e00;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(255, 140, 0, 0.3);
+}
+
+/* ====== Responsive Adjustments ====== */
+@media (max-width: 768px) {
+  .title-page-services {
+    font-size: 32px;
+  }
+
+  .products-card-item .card-content h4 {
+    font-size: 22px;
+  }
+
+  .book-now-btn {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}
+</style>
+
+<section class="card-services section">
+  <div class="card-services-header-section">
+    <h1 class="title-page-services">Tour Vasota Package</h1>
+    <p class="tour" style="color: orange;">"Explore the wild beauty of Vasota Fort with our thrilling adventure tour package!"</p>
+  </div>
+
+  <section class="products-card-section">
+    <div class="products-card-item">
+      <div class="card-header">
+        <img src="https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?auto=format&fit=crop&w=800&q=80" alt="">
+      </div>
+      <div class="card-content">
+        <h4 class="Mumbai" style="font-size: 30px;">Mumbai To Vasota Fort</h4>
+        <p class="price">2700<span>/Per person</span></p>
+        <ul>
+          <li>✔ 10 Projects</li>
+          <li>✔ Priority Support</li>
+          <li>✔ 5 GB Storage</li>
+        </ul>
+        <a href="booking.html?package=Mumbai To Vasota Fort&price=2700" class="btn">Choose Plan</a>
+      </div>
+    </div>
+
+    <div class="products-card-item">  
+      <div class="card-header">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="">
+      </div>
+      <div class="card-content">
+        <h4 class="Mumbai" style="font-size: 30px;">Pune To Vasota Fort</h4>
+         <p class="price">1800<span>/Per person</span></p>
+        <ul>
+          <li>✔ 10 Projects</li>
+          <li>✔ Priority Support</li>
+          <li>✔ 5 GB Storage</li>
+        </ul>
+        <a href="booking.html?package=Pune To Vasota Fort&price=1800" class="btn">Choose Plan</a>
+      </div>
+    </div>
+  </section>
+</section>
+
+ <!-- Tour Vasota Package end-->
+
+
+
+
+<!-- Packages section start -->
+<style>
+ :root {
+  --primary: #4f46e5;
+  --secondary: #ec4899;
+  --text-dark: #111827;
+  --text-light: #6b7280;
+  --btn-hover: #4338ca;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  background: white;
+  color: var(--text-dark);
+}
+
+.modern-pricing {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  color: var(--text-light);
+  margin-bottom: 50px;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+.card-banner {
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+}
+
+.card-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 8px;
+  width: 100%;
+  background:orange;
+}
+
+.accent-2 { background: #f59e0b; }
+.accent-3 { background:orange; }
+.accent-4 { background: orange; }
+.accent-5 { background: orange; }
+.accent-6 { background: orange; }
+
+.card-content {
+  padding: 20px;
+}
+
+.card-content h3 {
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+}
+
+.card-content .price {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+
+.card-content .price span {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.card-content ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.card-content ul li {
+  margin: 6px 0;
+  color: var(--text-light);
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 25px;
+  border-radius: 30px;
+  background: var(--primary);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+  background: var(--btn-hover);
+  transform: translateY(-2px);
+}
+
+.featured .card-accent {
+  height: 8px;
+}
+
+</style>
+
+<section id="packages" class="modern-pricing">
+  <h2 class="section-title">Our Packages</h2>
+  <p class="section-subtitle">Find the plan that fits your needs</p>
+
+  <div class="pricing-grid">
+
+    <div class="card">
+      <div class="card-banner" style="background-image: url('https://via.placeholder.com/400x150');"></div>
+      <div class="card-accent"></div>
+      <div class="card-content">
+        <h3>Starter</h3>
+        <p class="price">$9<span>/mo</span></p>
+        <ul>
+          <li>✔ 3 Projects</li>
+          <li>✔ Email Support</li>
+          <li>✔ 1 GB Storage</li>
+        </ul>
+        <a href="booking.html?package=Starter&price=9" class="btn">Get Started</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-banner" style="background-image: url('https://via.placeholder.com/400x150');"></div>
+      <div class="card-accent accent-2"></div>
+      <div class="card-content">
+        <h3>Basic</h3>
+        <p class="price">$19<span>/mo</span></p>
+        <ul>
+          <li>✔ 10 Projects</li>
+          <li>✔ Priority Support</li>
+          <li>✔ 5 GB Storage</li>
+        </ul>
+        <a href="booking.html?package=Basic&price=19" class="btn">Choose Plan</a>
+      </div>
+    </div>
+
+    <div class="card featured">
+      <div class="card-banner" style="background-image: url('https://via.placeholder.com/400x150');"></div>
+      <div class="card-accent accent-3"></div>
+      <div class="card-content">
+        <h3>Standard</h3>
+        <p class="price">$39<span>/mo</span></p>
+        <ul>
+          <li>✔ 20 Projects</li>
+          <li>✔ 24/7 Support</li>
+          <li>✔ 15 GB Storage</li>
+        </ul>
+        <a href="booking.html?package=Standard&price=39" class="btn">Most Popular</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-banner" style="background-image: url('https://via.placeholder.com/400x150');"></div>
+      <div class="card-accent accent-4"></div>
+      <div class="card-content">
+        <h3>Pro</h3>
+        <p class="price">$59<span>/mo</span></p>
+        <ul>
+          <li>✔ 50 Projects</li>
+          <li>✔ Dedicated Support</li>
+          <li>✔ 50 GB Storage</li>
+        </ul>
+        <a href="booking.html?package=Pro&price=59" class="btn">Get Pro</a>
+      </div>
+    </div>
+
+     <div class="card">
+      <div class="card-banner" style="background-image: url('https://via.placeholder.com/400x150');"></div>
+      <div class="card-accent accent-4"></div>
+      <div class="card-content">
+        <h3>Ultra Pro</h3>
+        <p class="price">$90<span>/mo</span></p>
+        <ul>
+          <li>✔ 80 Projects</li>
+          <li>✔  Support</li>
+          <li>✔ 150 GB Storage</li>
+        </ul>
+        <a href="booking.html?package=Ultra-Pro&price=1000" class="btn">Get Pro</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Packages section end-->
+
+
+
+
+
+<!-- Gallery Section Start-->
+<style>
+    /* Gallery Section */
+    .gallery-section {
+        max-width: 1200px;
+        margin: 50px auto;
+        padding: 0 20px;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .gallery-section h2 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 2.5em;
+        color: #222;
+        letter-spacing: 1px;
+    }
+
+    /* Grid Layout */
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+    }
+
+    /* Individual Items */
+    .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        cursor: pointer;
+        box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+        transform: scale(1.15);
+    }
+
+    /* Overlay Effect */
+    .gallery-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.3);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover::before {
+        opacity: 1;
+    }
+
+    /* Caption Text */
+    .gallery-caption {
+        position: absolute;
+        bottom: 15px;
+        left: 15px;
+        color: #fff;
+        font-size: 1.1em;
+        background: rgba(0,0,0,0.6);
+        padding: 5px 10px;
+        border-radius: 5px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-caption {
+        opacity: 1;
+    }
+</style>
+
+<section class="gallery-section" id="Gallery">
+    <h2>Our Gallery</h2>
+    <div class="gallery-grid">
+        <div class="gallery-item">
+            <img src="https://via.placeholder.com/400x300" alt="Gallery Image 1">
+            <div class="gallery-caption">Caption 1</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://via.placeholder.com/400x300" alt="Gallery Image 2">
+            <div class="gallery-caption">Caption 2</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://via.placeholder.com/400x300" alt="Gallery Image 3">
+            <div class="gallery-caption">Caption 3</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://via.placeholder.com/400x300" alt="Gallery Image 4">
+            <div class="gallery-caption">Caption 4</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://via.placeholder.com/400x300" alt="Gallery Image 5">
+            <div class="gallery-caption">Caption 5</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://via.placeholder.com/400x300" alt="Gallery Image 6">
+            <div class="gallery-caption">Caption 6</div>
+        </div>
+    </div>
+</section>
+<!-- Gallery section end-->
+
+
+
+
+
+ <!-- Hero Section -->
+<style>
+/* --- Hero / Home section --- */
+    .hero {
+      background-image: url("https://images.unsplash.com/photo-1501117716987-c8e1ecb2108b?auto=format&fit=crop&w=1500&q=80");
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: black;
+      text-align: center;
+      flex-direction: column;
+    }
+
+    .hero h1 {
+      font-size: 50px;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    }
+
+    .hero a {
+      background-color: #ffcc00;
+      color: #004aad;
+      padding: 12px 25px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .hero a:hover {
+      background-color: orange;
+    }
+</style>
+
+  <section class="hero">
+    <h1>Welcome to MyHotel</h1>
+    <p>Luxury & Comfort Await You</p>
+    <a href="#booking">Book Now</a>
+  </section>
+<!-- hero sextion end -->
+
+
+
+
+  <!-- Booking Section start-->
+<style>
+.booking-form {
+      background: #f9f9f9;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .booking-form h2 {
+      margin-bottom: 20px;
+      color: orange;
+    }
+
+    .booking-form form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .booking-form input,
+    .booking-form select,
+    .booking-form button {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .booking-form button {
+      background-color: orange;
+      color: white;
+      cursor: pointer;
+      border: none;
+      transition: background 0.3s;
+    }
+
+    .booking-form button:hover {
+      background-color: orange;
+    }
+</style>
+
+  <section class="booking-form" id="booking">
+    <h2>Book Your Stay</h2>
+    <form>
+      <input type="text" placeholder="Full Name" required />
+      <input type="Mobile" placeholder="Mobile" required />
+      <input type="date" placeholder="Check-in" required />
+      <input type="date" placeholder="Check-out" required />
+      <select required>
+        <option value="">Select Room Type</option>
+        <option value="single">Single Room</option>
+        <option value="double">Double Room</option>
+        <option value="suite">Suite</option>
+      </select>
+      <button type="submit">Book Now</button>
+    </form>
+  </section>
+  <!--Booking section end -->
+
+
+
+
+  <!-- Footer section start-->
+<style>
+footer {
+      background-color: orange;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+    }
+</style>
+
+  <footer>
+    &copy; 2025 MyHotel. All Rights Reserved.
+  </footer>
+<!-- Footer end-->
+
+
+
+
+
+</body>
+</html>
